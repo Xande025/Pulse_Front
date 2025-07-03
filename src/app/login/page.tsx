@@ -4,7 +4,6 @@ import { toast } from "sonner"
 import { useClienteStore } from "@/Context/ClienteContext"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import Image from "next/image"
 
 type Inputs = {
     email: string

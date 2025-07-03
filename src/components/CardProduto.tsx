@@ -1,5 +1,6 @@
 import { ProdutoItf } from "@/utils/types/ProdutoItf";
 import Link from "next/link";
+import Image from "next/image";
 
 export function CardProduto({ data }: { data: ProdutoItf }) {
     if (!data || !data.marca) {
@@ -46,10 +47,12 @@ export function CardProduto({ data }: { data: ProdutoItf }) {
             {/* Imagem do Produto */}
             <div className="relative overflow-hidden">
                 <div className="h-50 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center p-2">
-                    <img
+                    <Image
                         className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
                         src={data.imagem}
                         alt={`Imagem de ${data.nome}`}
+                        width={300}
+                        height={200}
                         onError={(e) => {
                             e.currentTarget.src = '/fallback-product.png';
                         }}
