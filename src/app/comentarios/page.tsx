@@ -3,6 +3,7 @@ import './page.css'
 import { useEffect, useState } from "react";
 import { useClienteStore } from "@/Context/ClienteContext";
 import { ComentarioItf } from "@/utils/types/ComentarioItf";
+import Image from "next/image";
 
 export default function Comentarios() {
   const [comentarios, setComentarios] = useState<ComentarioItf[]>([])
@@ -13,7 +14,7 @@ export default function Comentarios() {
       // Busca todos os comentários e filtra apenas os do cliente logado
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/comentarios`)
       const dados = await response.json()
-      const comentariosCliente = dados.filter((comentario: any) => comentario.clienteId === cliente.id)
+      const comentariosCliente = dados.filter((comentario: ComentarioItf) => comentario.clienteId === cliente.id)
       setComentarios(comentariosCliente)
     }
     if (cliente.id) buscaDados()
@@ -35,13 +36,13 @@ export default function Comentarios() {
       </th>
       <td className="px-6 py-4">
         {comentario.produto?.imagem ? (
-          <img src={comentario.produto.imagem} className="imagemProduto" alt={`Imagem de ${comentario.produto.nome}`} />
+          <Image src={comentario.produto.imagem} className="imagemProduto" alt={`Imagem de ${comentario.produto.nome}`} width={120} height={90} />
         ) : (
           <span>-</span>
         )}
       </td>
       <td className="px-6 py-4">
-        <p><b>{(comentario as any).texto ?? comentario.descricao ?? '-'}</b></p>
+        <p><b>{comentario.texto ?? comentario.descricao ?? '-'}</b></p>
         <p><i>Enviado em: {dataDMA(comentario.createdAt)}</i></p>
       </td>
       <td className="px-6 py-4">

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import Image from "next/image"
 
 interface Inputs {
   nome: string
@@ -13,7 +12,7 @@ interface Inputs {
 }
 
 export default function CadastrarCliente() {
-  const { register, handleSubmit, reset, watch } = useForm<Inputs>()
+  const { register, handleSubmit, reset } = useForm<Inputs>()
   const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)

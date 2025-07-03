@@ -7,6 +7,7 @@ import { useClienteStore } from "@/Context/ClienteContext"
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
 import Link from "next/link"
+import Image from "next/image"
 
 // Interface para o formulário de comentário
 type Inputs = {
@@ -59,7 +60,7 @@ export default function Detalhes() {
           }
           
           // Filtrar comentários do produto atual
-          const comentariosDoProduto = todosComentarios.filter((comentario: any) => {
+          const comentariosDoProduto = todosComentarios.filter((comentario: ComentarioItf) => {
             const match = comentario.produtoId === Number(params.produto_id)
             console.log(`Comentário ${comentario.id}: produtoId=${comentario.produtoId}, params=${params.produto_id}, match=${match}`)
             return match
@@ -84,11 +85,13 @@ export default function Detalhes() {
 
   const listaFotos = produto?.imagens?.map(foto => (
     <div key={foto.id}>
-      <img
+      <Image
         src={foto.url}
         alt={foto.descricao}
         title={foto.descricao}
         className="h-52 max-w-80 rounded-lg"
+        width={320}
+        height={208}
         onError={e => (e.currentTarget.src = fallbackImg)}
       />
     </div>
@@ -126,7 +129,7 @@ export default function Detalhes() {
         if (comentariosResponse.ok) {
           const todosComentarios = await comentariosResponse.json()
           console.log('Comentários após envio:', todosComentarios)
-          const comentariosDoProduto = todosComentarios.filter((comentario: any) => 
+          const comentariosDoProduto = todosComentarios.filter((comentario: ComentarioItf) => 
             comentario.produtoId === Number(params.produto_id)
           )
           console.log('Comentários filtrados após envio:', comentariosDoProduto)
@@ -193,10 +196,12 @@ export default function Detalhes() {
               <>
                 {/* Informações do Produto */}
                 <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
-                  <img
+                  <Image
                     className="object-cover w-full md:w-1/2 rounded-lg shadow-md"
                     src={produto.imagem}
                     alt={`Imagem do Produto ${produto.nome}`}
+                    width={500}
+                    height={400}
                     onError={e => (e.currentTarget.src = fallbackImg)}
                   />
                   <div className="flex-1 w-full">
