@@ -14,6 +14,7 @@ export default function Comentarios() {
       // Busca todos os comentários e filtra apenas os do cliente logado
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/comentarios`)
       const dados = await response.json()
+      // Trocar any por ComentarioItf nos filtros
       const comentariosCliente = dados.filter((comentario: ComentarioItf) => comentario.clienteId === cliente.id)
       setComentarios(comentariosCliente)
     }

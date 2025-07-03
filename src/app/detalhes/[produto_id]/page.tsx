@@ -59,7 +59,7 @@ export default function Detalhes() {
             console.log('produtoId do primeiro comentário:', todosComentarios[0].produtoId, 'Tipo:', typeof todosComentarios[0].produtoId)
           }
           
-          // Filtrar comentários do produto atual
+          // Trocar any por ComentarioItf nos filtros
           const comentariosDoProduto = todosComentarios.filter((comentario: ComentarioItf) => {
             const match = comentario.produtoId === Number(params.produto_id)
             console.log(`Comentário ${comentario.id}: produtoId=${comentario.produtoId}, params=${params.produto_id}, match=${match}`)
@@ -129,6 +129,7 @@ export default function Detalhes() {
         if (comentariosResponse.ok) {
           const todosComentarios = await comentariosResponse.json()
           console.log('Comentários após envio:', todosComentarios)
+          // Filtrar comentários do produto atual
           const comentariosDoProduto = todosComentarios.filter((comentario: ComentarioItf) => 
             comentario.produtoId === Number(params.produto_id)
           )
