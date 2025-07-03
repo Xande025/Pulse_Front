@@ -28,7 +28,7 @@ export default function Home() {
       const idCliente = localStorage.getItem("clienteKey");
       buscaCliente(idCliente as string);
     }
-  }, []);
+  }, [logaCliente]);
 
   // Filtra apenas produtos destacados
   const produtosDestaque = produtos.filter((produto) => produto.destaque);

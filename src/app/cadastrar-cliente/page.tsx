@@ -36,7 +36,7 @@ export default function CadastrarCliente() {
       } else {
         toast.error(resData.erro || "Erro ao cadastrar cliente")
       }
-    } catch (error) {
+    } catch {
       toast.error("Erro ao cadastrar. Tente novamente.")
     }
   }

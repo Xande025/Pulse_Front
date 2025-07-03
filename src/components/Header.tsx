@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useClienteStore } from "@/Context/ClienteContext"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export function Header() {
     const { cliente, deslogaCliente } = useClienteStore()
@@ -24,7 +25,7 @@ export function Header() {
                     {/* Logo e Nome da Loja */}
                     <Link href="/" className="flex items-center space-x-4 group">
                         <div className="relative">
-                            <img src="/logo.png" className="h-16 w-auto transition-transform duration-300 group-hover:scale-110" alt="Logo" />
+                            <Image src="/logo.png" className="h-16 w-auto transition-transform duration-300 group-hover:scale-110" alt="Logo" width={64} height={64} />
                             <div className="absolute inset-0 bg-gradient-to-r from-[#845bdf] to-[#5ce1e6] opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
                         </div>
                         <div className="flex flex-col">

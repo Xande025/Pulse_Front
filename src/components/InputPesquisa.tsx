@@ -130,7 +130,7 @@ export function InputPesquisa({ setProdutos }: InputPesquisaProps) {
             <span>Dica: Digite pelo menos 2 caracteres</span>
           </span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:inline">Ex: "smartphone", "notebook", "1000"</span>
+          <span className="hidden sm:inline">Ex: &quot;smartphone&quot;, &quot;notebook&quot;, &quot;1000&quot;</span>
         </div>
       </div>
     </div>
